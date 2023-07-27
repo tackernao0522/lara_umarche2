@@ -45,6 +45,7 @@
 |        |          |                                 |                       |                                                                         | App\Http\Middleware\RedirectIfAuthenticated        |
 |        | GET|HEAD | sanctum/csrf-cookie             |                       | Laravel\Sanctum\Http\Controllers\CsrfCookieController@show              | web                                                |
 |        | GET|HEAD | servicecontainertest            |                       | App\Http\Controllers\LifeCycleTestController@showServiceContainerTest   | web                                                |
+|        | GET|HEAD | serviceprovidertest             |                       | App\Http\Controllers\LifeCycleTestController@showServiceProviderTest    | web                                                |
 |        | GET|HEAD | verify-email                    | verification.notice   | App\Http\Controllers\Auth\EmailVerificationPromptController@__invoke    | web                                                |
 |        |          |                                 |                       |                                                                         | App\Http\Middleware\Authenticate                   |
 |        | GET|HEAD | verify-email/{id}/{hash}        | verification.verify   | App\Http\Controllers\Auth\VerifyEmailController@__invoke                | web                                                |
