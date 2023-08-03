@@ -17,21 +17,39 @@ class OwnersTableSeeder extends Seeder
     {
         DB::table('owners')->insert([
             [
-                'name' => 'naomi',
-                'email' => 'takaproject777@gmail.com',
-                'password' => Hash::make('czk68346'),
-                'created_at' => now(),
-            ],
-            [
                 'name' => 'kaira',
-                'email' => 'takaki5573031@yahoo.co.jp',
-                'password' => Hash::make('ggz6kxp3'),
+                'email' => 'takaproject777@gmail.com',
+                'password' => Hash::make('password123'),
                 'created_at' => now(),
             ],
             [
-                'name' => 'rikito',
-                'email' => 'takaki5573@hotmail.com',
-                'password' => Hash::make('czk5573'),
+                'name' => 'pepe',
+                'email' => 'cheap_trick_magic@yahoo.co.jp',
+                'password' => Hash::make('password123'),
+                'created_at' => now(),
+            ],
+            [
+                'name' => 'mieko',
+                'email' => 'takaki_5573031@yahoo.co.jp',
+                'password' => Hash::make('password123'),
+                'created_at' => now(),
+            ],
+            [
+                'name' => 'test1',
+                'email' => 'test1@test.com',
+                'password' => Hash::make('password123'),
+                'created_at' => now(),
+            ],
+            [
+                'name' => 'test2',
+                'email' => 'test2@test.com',
+                'password' => Hash::make('password123'),
+                'created_at' => now(),
+            ],
+            [
+                'name' => 'test3',
+                'email' => 'test3@test.com',
+                'password' => Hash::make('password123'),
                 'created_at' => now(),
             ],
         ]);
