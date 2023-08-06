@@ -9,9 +9,10 @@ class Image extends Model
 {
     use HasFactory;
 
-    protected $fillabe = [
+    protected $fillable = [
         'owner_id',
         'filename',
+        'title',
     ];
 
     public function owner()
