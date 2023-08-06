@@ -100,7 +100,10 @@ class ImageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $image = Image::findOrFail($id);
+        // dd($image);
+
+        return view('owner.images.edit', compact('image'));
     }
 
     /**
@@ -112,7 +115,22 @@ class ImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'string|max:50',
+        ],[
+            'title.max' => 'タイトルは、50文字以下で指定してください。',
+        ]);
+
+        $image = Image::findOrFail($id);
+        $image->title = $request->title;
+        $image->save();
+
+        return redirect()
+            ->route('owner.images.index')
+            ->with([
+                'message' => '画像タイトルを更新しました。',
+                'status' => 'info',
+            ]);
     }
 
     /**
