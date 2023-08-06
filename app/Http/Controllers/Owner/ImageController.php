@@ -8,6 +8,7 @@ use App\Models\Image;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -117,7 +118,7 @@ class ImageController extends Controller
     {
         $request->validate([
             'title' => 'string|max:50',
-        ],[
+        ], [
             'title.max' => 'タイトルは、50文字以下で指定してください。',
         ]);
 
@@ -141,6 +142,20 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $image = Image::findOrFail($id);
+        $filePath = 'public/products/' . $image->filename;
+
+        if (Storage::exists($filePath)) {
+            Storage::delete($filePath);
+        }
+
+        Image::findOrFail($id)->delete();
+
+        return redirect()
+            ->route('owner.images.index')
+            ->with([
+                'message' => '画像を削除しました。',
+                'status' => 'alert',
+            ]);
     }
 }
