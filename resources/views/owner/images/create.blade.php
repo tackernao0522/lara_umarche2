@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            オーナー登録
+            画像登録
         </h2>
     </x-slot>
 
