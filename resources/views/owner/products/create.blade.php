@@ -17,17 +17,15 @@
                                 <div class="relative">
                                     <label for="name" class="leading-7 text-sm text-gray-600">商品名 ※必須</label>
                                     <input type="text" id="name" name="name" value="{{ old('name') }}"
-                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                        required>
+                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                 </div>
                             </div>
 
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative">
                                     <label for="information" class="leading-7 text-sm text-gray-600">商品情報 ※必須</label>
-                                    <textarea id="information" name="name" rows="10"
-                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                        required>{{ old('information') }}</textarea>
+                                    <textarea id="information" name="information" rows="10"
+                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ old('information') }}</textarea>
                                 </div>
                             </div>
 
@@ -35,8 +33,7 @@
                                 <div class="relative">
                                     <label for="price" class="leading-7 text-sm text-gray-600">価格 ※必須</label>
                                     <input type="number" id="price" name="price" value="{{ old('price') }}"
-                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                        required>
+                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                 </div>
                             </div>
 
@@ -53,8 +50,7 @@
                                 <div class="relative">
                                     <label for="quantity" class="leading-7 text-sm text-gray-600">初期在庫 ※必須</label>
                                     <input type="number" id="quantity" name="quantity" value="{{ old('quantity') }}"
-                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                        required>
+                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                 </div>
                             </div>
 
@@ -63,10 +59,10 @@
                                     <label for="shop_id" class="leading-7 text-sm text-gray-600">販売する店舗</label>
                                     <select name="shop_id" id="shop_id"
                                         class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                        {{-- <option value="" selected="" disabled="">--店舗選択--</option> --}}
                                         @foreach ($shops as $shop)
-                                            <option value="{{ $shop->id }}">
-                                                {{ old('shop_id') == $shop->id ? 'selected' : '' }}
-                                                {{ $shop->name }}
+                                            <option value="{{ $shop->id }}"
+                                                {{ old('shop_id') == $shop->id ? 'selected' : '' }}>{{ $shop->name }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -78,6 +74,7 @@
                                     <label for="category" class="leading-7 text-sm text-gray-600">カテゴリー</label>
                                     <select name="category" id="category"
                                         class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                        <option value="" selected="" disabled="">--カテゴリー選択--</option>
                                         @foreach ($categories as $category)
                                             <optgroup label="{{ $category->name }}">
                                                 @foreach ($category->secondaries as $secondary)
@@ -99,8 +96,10 @@
 
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative flex justify-around">
-                                    <div><input type="radio" name="is_selling" value="1" {{old('is_selling') == 1 ? 'checked' : ''}} class="mr-2">販売中</div>
-                                    <div><input type="radio" name="is_selling" value="0" {{old('is_selling') == 0 ? 'checked' : ''}} class="mr-2">停止中</div>
+                                    <div><input type="radio" name="is_selling" value="1"
+                                            {{ old('is_selling') == 1 ? 'checked' : '' }} class="mr-2">販売中</div>
+                                    <div><input type="radio" name="is_selling" value="0"
+                                            {{ old('is_selling') == 0 ? 'checked' : '' }} class="mr-2">停止中</div>
                                 </div>
                             </div>
 
