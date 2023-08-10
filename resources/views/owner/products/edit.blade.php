@@ -10,6 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                    <x-flash-message status="session('status')" />
                     <form method="post" action="{{ route('owner.products.update', $product->id) }}">
                         @csrf
                         @method('PUT')
@@ -72,8 +73,7 @@
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative">
                                     <label for="quantity" class="leading-7 text-sm text-gray-600">数量 ※必須</label>
-                                    <input type="number" id="quantity" name="quantity"
-                                        value="0"
+                                    <input type="number" id="quantity" name="quantity" value="0"
                                         class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     <span class="text-sm">0〜99の範囲で入力してください</span>
                                 </div>
@@ -115,13 +115,13 @@
                                 </div>
                             </div>
 
-                            <x-select-image :images="$images" currendId="{{ $product->image1 }}"
+                            <x-select-image :images="$images" currentId="{{ $product->image1 }}"
                                 currentImage="{{ $product->imageFirst->filename ?? '' }}" name="image1" />
-                            <x-select-image :images="$images" currendId="{{ $product->image2 }}"
+                            <x-select-image :images="$images" currentId="{{ $product->image2 }}"
                                 currentImage="{{ $product->imageSecond->filename ?? '' }}" name="image2" />
-                            <x-select-image :images="$images" currendId="{{ $product->image3 }}"
+                            <x-select-image :images="$images" currentId="{{ $product->image3 }}"
                                 currentImage="{{ $product->imageThird->filename ?? '' }}" name="image3" />
-                            <x-select-image :images="$images" currendId="{{ $product->image4 }}"
+                            <x-select-image :images="$images" currentId="{{ $product->image4 }}"
                                 currentImage="{{ $product->imageFourth->filename ?? '' }}" name="image4" />
 
                             <div class="p-2 w-1/2 mx-auto">
