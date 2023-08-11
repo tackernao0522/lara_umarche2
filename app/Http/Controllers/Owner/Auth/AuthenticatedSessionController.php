@@ -49,6 +49,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/owner');
+        // redirect先をlogin画面に編集
+        return redirect('/owner/login');
     }
 }
