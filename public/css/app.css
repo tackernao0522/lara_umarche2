@@ -941,6 +941,11 @@ select {
     margin-bottom: 2rem;
 }
 
+.my-2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
 .-ml-px {
     margin-left: -1px;
 }
@@ -959,6 +964,10 @@ select {
 
 .mb-12 {
     margin-bottom: 3rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
 }
 
 .mb-4 {
@@ -1027,10 +1036,6 @@ select {
 
 .mt-8 {
     margin-top: 2rem;
-}
-
-.mb-2 {
-    margin-bottom: 0.5rem;
 }
 
 .block {
@@ -2268,6 +2273,10 @@ select {
         width: 50%;
     }
 
+    .md\:w-2\/12 {
+        width: 16.666667%;
+    }
+
     .md\:w-2\/3 {
         width: 66.666667%;
     }
@@ -2278,10 +2287,6 @@ select {
 
     .md\:w-4\/12 {
         width: 33.333333%;
-    }
-
-    .md\:w-2\/12 {
-        width: 16.666667%;
     }
 
     .md\:grid-cols-2 {
