@@ -33,7 +33,7 @@ class ItemController extends Controller
     {
         $products = Product::availableItems()
             ->sortOrder($request->sort)
-            ->paginate($request->pagination);
+            ->paginate($request->pagination ?? '20');
 
         // $stocks = DB::table('t_stocks')
         //     ->select('product_id', DB::raw('sum(quantity) as quantity'))
