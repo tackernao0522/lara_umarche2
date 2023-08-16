@@ -29,9 +29,11 @@ class ItemController extends Controller
         });
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::availableItems()->get();
+        $products = Product::availableItems()
+            ->sortOrder($request->sort)
+            ->get();
 
         // $stocks = DB::table('t_stocks')
         //     ->select('product_id', DB::raw('sum(quantity) as quantity'))
