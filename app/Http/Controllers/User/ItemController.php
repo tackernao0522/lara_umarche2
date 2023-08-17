@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TestMail;
 use App\Models\PrimaryCategory;
 use App\Models\Product;
 use App\Models\Stock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ItemController extends Controller
 {
@@ -33,6 +36,7 @@ class ItemController extends Controller
     public function index(Request $request)
     {
         // dd($request);
+        Mail::to(Auth::user()->email)->send(new TestMail());
 
         $categories = PrimaryCategory::with('secondaries')->get();
 
@@ -41,7 +45,7 @@ class ItemController extends Controller
             ->searchKeyword($request->keyword ?? '')
             ->sortOrder($request->sort)
             ->paginate($request->pagination ?? '20');
-            // dd($request);
+        // dd($request);
 
         // $stocks = DB::table('t_stocks')
         //     ->select('product_id', DB::raw('sum(quantity) as quantity'))
