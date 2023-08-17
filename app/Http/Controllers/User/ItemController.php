@@ -38,8 +38,10 @@ class ItemController extends Controller
 
         $products = Product::availableItems()
             ->selectCategory($request->category ?? '0')
+            ->searchKeyword($request->keyword ?? '')
             ->sortOrder($request->sort)
             ->paginate($request->pagination ?? '20');
+            // dd($request);
 
         // $stocks = DB::table('t_stocks')
         //     ->select('product_id', DB::raw('sum(quantity) as quantity'))
