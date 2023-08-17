@@ -106,4 +106,27 @@ class Product extends Model
             return $query->orderBy('products.created_at', 'asc');
         }
     }
+
+    public function scopeSelectCategory($query, $categoryId)
+    {
+        if ($categoryId !== '0') {
+            return $query->where('products.secondary_category_id', $categoryId);
+        } else {
+            return;
+        }
+    }
+
+    public function scopeSearchKeyword($query, $keyword)
+    {
+        if (!is_null($keyword)) {
+            $spaceConvert = mb_convert_kana($keyword, 's'); // 全角スペースに
+            $keywords = preg_split('/[\s]+/', $spaceConvert, -1, PREG_SPLIT_NO_EMPTY); // 空白で区切る
+            foreach ($keywords as $word) {
+                $query->where('products.name', 'like', '%' . $word . '%');
+            }
+            return $query;
+        } else {
+            return;
+        }
+    }
 }

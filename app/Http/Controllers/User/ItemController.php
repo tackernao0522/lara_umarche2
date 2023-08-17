@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\PrimaryCategory;
 use App\Models\Product;
 use App\Models\Stock;
 use Illuminate\Http\Request;
@@ -31,9 +32,16 @@ class ItemController extends Controller
 
     public function index(Request $request)
     {
+        // dd($request);
+
+        $categories = PrimaryCategory::with('secondaries')->get();
+
         $products = Product::availableItems()
+            ->selectCategory($request->category ?? '0')
+            ->searchKeyword($request->keyword ?? '')
             ->sortOrder($request->sort)
             ->paginate($request->pagination ?? '20');
+            // dd($request);
 
         // $stocks = DB::table('t_stocks')
         //     ->select('product_id', DB::raw('sum(quantity) as quantity'))
@@ -72,7 +80,7 @@ class ItemController extends Controller
 
         // $products = Product::all();
 
-        return view('user.index', compact('products'));
+        return view('user.index', compact('products', 'categories'));
     }
 
     public function show($id)
