@@ -39,7 +39,7 @@ class ItemController extends Controller
         // dd($request);
         // Mail::to(Auth::user()->email)->send(new TestMail());
 
-        SendThanksMail::dispatch();
+        // SendThanksMail::dispatch();
 
         $categories = PrimaryCategory::with('secondaries')->get();
 
