@@ -2,8 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Mail\TestMail;
-use App\Mail\ThanksMail;
+use App\Mail\OrderedMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,11 +11,11 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
-class SendThanksMail implements ShouldQueue
+class SendOrderedMail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $products;
+    public $product;
     public $user;
 
     /**
@@ -24,9 +23,9 @@ class SendThanksMail implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($products, $user)
+    public function __construct($product, $user)
     {
-        $this->products = $products;
+        $this->product = $product;
         $this->user = $user;
     }
 
@@ -37,7 +36,7 @@ class SendThanksMail implements ShouldQueue
      */
     public function handle()
     {
-        // Mail::to('takaki_5573@hotmail.com')->send(new TestMail());
-        Mail::to($this->user)->send(new ThanksMail($this->products, $this->user));
+        Mail::to($this->product['email'])
+            ->send(new OrderedMail($this->product, $this->user));
     }
 }
